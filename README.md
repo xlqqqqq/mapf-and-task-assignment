@@ -88,7 +88,7 @@ pip install pyyaml
 ## 快速开始
 
 ```bash
-git clone <你的仓库地址>
+git clone https://github.com/xlqqqqq/mapf-and-task-assignment.git
 cd "<仓库名>/path-finding/one-shot/CBS with RRA"
 python src/main.py maps/map_random/random_map.yaml output.yaml stay
 ```
