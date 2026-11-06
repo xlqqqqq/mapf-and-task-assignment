@@ -5,7 +5,7 @@
 - **One-shot MAPF**：CBS、ICBS、ECBS、PBS（已实现）；EECBS、PIBT（未更新）
 - **Life-long MAPF**：RHCR（未更新）
 - **任务分配**：Google OR-Tools、ALNS、DRLH（未更新）
-- **ROS 仿真**：基于Gazebo和TurtleBot3 Burger的仿真实现（未更新）
+- **ROS仿真**：基于Gazebo和TurtleBot3 Burger的仿真实现（未更新）
 
 算法均基于Python实现，个人水平有限，所有算法均以最简单的逻辑和语法实现，可能会有冗余和不高效的地方，请谅解。希望对你有所帮助。欢迎Star。
 (CBS系列算法的整体框架参考自早年在GitHub上找到的一个开源项目，但原仓库链接已丢失，暂时无法标注出处。如有冒犯，敬请谅解，也欢迎知情者告知该项目的来源，以便补上出处。)
@@ -18,11 +18,11 @@
 
 | 算法 | 全称 | 特点 | 状态 | 说明 |
 | --- | --- | --- | --- | --- |
-| CBS | Conflict-Based Search | 兼具完备性和最优性 | 已更新 | 经典 MAPF 最优求解算法 |
-| ICBS | Improved CBS | 兼具完备性和最优性 | 已更新 | 在 CBS 基础上对冲突分类（cardinal/semi-cardinal/non-cardinal），优先处理cardinal冲突，并使用绕过（bypass）策略减少高层节点。我们未实现原论文中的Merge和Restart策略 |
-| ECBS | Enhanced CBS | 完备，有界次优 | 已更新 | 在 CBS 基础上通过聚焦搜索（Focal Search）加快求解，采用次优权重（默认 w=1.05，可在 `main.py` 中调整），并以冲突数量作为辅助启发值（Conflict Heuristics） |
+| CBS | Conflict-Based Search | 兼具完备性和最优性 | 已更新 | 经典MAPF最优求解算法 |
+| ICBS | Improved CBS | 兼具完备性和最优性 | 已更新 | 在CBS基础上对冲突分类（cardinal/semi-cardinal/non-cardinal），优先处理cardinal冲突，并使用绕过（bypass）策略减少高层节点。我们未实现原论文中的Merge和Restart策略 |
+| ECBS | Enhanced CBS | 完备，有界次优 | 已更新 | 在CBS基础上通过聚焦搜索（Focal Search）加快求解，采用次优权重（默认w=1.05，可在 `main.py` 中调整），并以冲突数量作为辅助启发值（Conflict Heuristics） |
 | PBS | Priority-Based Search | 不完备，无界次优 | 已更新 | 通过动态维护智能体优先级图（DAG），按拓扑序重规划低优先级智能体，快速得到无冲突路径 |
-| EECBS | Explicit Estimation CBS | 完备，有界次优 | 未更新 | 在 ECBS 基础上引入显式估计搜索（EES）和在线学习的高层启发值，进一步提升求解效率 |
+| EECBS | Explicit Estimation CBS | 完备，有界次优 | 未更新 | 在ECBS基础上引入显式估计搜索（EES）和在线学习的高层启发值，进一步提升求解效率 |
 | PIBT | Priority Inheritance with Backtracking | 不完备，无最优性保证 | 未更新 | 基于优先级继承与回溯的迭代式求解器，每个时间步求解快、可扩展性好，适合life-long MAPF和大规模智能体场景 |
 
 上述已实现的四种算法均使用RRA（Reverse Resumable A*）作为低层A*的启发式：从目标点反向搜索得到精确距离，减少低层搜索的无效扩展。
@@ -50,9 +50,9 @@
 
 | 算法 | 全称 | 状态 | 说明 |
 | --- | --- | --- | --- |
-| Google OR-Tools | OR-Tools | 未更新 | Google 开源的优化套件，可用于任务分配问题的建模与求解 |
+| Google OR-Tools | OR-Tools | 未更新 | Google开源的优化套件，可用于任务分配问题的建模与求解 |
 | ALNS | Adaptive Large Neighborhood Search | 未更新 | 自适应大邻域搜索，通过破坏-修复算子与自适应算子选择求解任务分配 |
-| DRLH | Deep Reinforcement Learning Hyperheuristic | 未更新 | 使用强化学习得到的策略网络替代 ALNS 的自适应算子选择层 |
+| DRLH | Deep Reinforcement Learning Hyperheuristic | 未更新 | 使用强化学习得到的策略网络替代ALNS的自适应算子选择层 |
 
 
 **相关链接**
@@ -70,7 +70,7 @@
 
 - Python >= 3.8.5
 - PyYAML
-- tkinter（仅可视化功能需要；Windows/macOS通常自带，Ubuntu 需执行 `sudo apt install python3-tk`）
+- tkinter（仅可视化功能需要；Windows/macOS通常自带，Ubuntu需执行 `sudo apt install python3-tk`）
 
 ```bash
 pip install pyyaml
@@ -88,6 +88,8 @@ pip install pyyaml
 
 ## 快速开始
 
+### 通过命令行运行
+
 ```bash
 git clone https://github.com/xlqqqqq/mapf-and-task-assignment.git
 cd "../path-finding/one-shot/CBS with RRA"
@@ -98,9 +100,9 @@ python src/main.py maps/map_random/random_map.yaml output.yaml stay
 
 | 参数 | 说明 |
 | --- | --- |
-| 第 1 个 | 输入地图文件路径 |
-| 第 2 个 | 输出解文件路径 |
-| 第 3 个 | `stay`：智能体到达终点后停留；`disappear`：到达后从地图中消失 |
+| 第1个 | 输入地图文件路径 |
+| 第2个 | 输出解文件路径 |
+| 第3个 | `stay`：智能体到达终点后停留；`disappear`：到达后从地图中消失 |
 
 运行其他算法时，进入对应目录并执行相同命令
 
@@ -111,9 +113,9 @@ python src/main.py maps/map_random/random_map.yaml output.yaml stay
 
 求解成功后终端会输出总代价、生成和扩展的高层节点数、低层搜索次数以及运行时间。
 
-### 在 IDE 中直接运行（PyCharm）
+### 在IDE中直接运行（PyCharm）
 
-如果不想使用命令行，也可以直接在IDE中运行和调试。以PyCharm 为例：
+如果不想使用命令行，也可以直接在IDE中运行和调试。以PyCharm为例：
 
 1. 用PyCharm打开某个算法目录（例如`CBS with RRA/`）。
 2. 打开`src/main.py`，直接点击右上角的运行按钮。此时会使用`main()`里定义的默认参数：输入`../maps/map_warehouse/warehouse_map.yaml`，输出`output.yaml`，终点行为`stay`。
@@ -219,12 +221,12 @@ python src/visualisation.py
 | 文件 | 作用 |
 | --- | --- |
 | `main.py` | 高层搜索（冲突树 / 优先级树）与程序入口 |
-| `astar.py` | 低层带约束 A* 与冲突检测 |
-| `RRA.py` | 反向搜索，计算 RRA 启发值 |
+| `astar.py` | 低层带约束A*与冲突检测 |
+| `RRA.py` | 反向搜索，计算RRA启发值 |
 | `RRA_continue.py` | 在低层搜索之间继续未完成的反向搜索，避免重复计算 |
-| `mdd.py` | MDD（仅 ICBS 使用） |
-| `priority.py` | 优先级 DAG（仅 PBS 使用） |
-| `visualisation.py` | tkinter 可视化 |
+| `mdd.py` | MDD（仅ICBS使用） |
+| `priority.py` | 优先级DAG（仅PBS使用） |
+| `visualisation.py` | tkinter可视化 |
 
 ## Roadmap
 
@@ -232,9 +234,9 @@ python src/visualisation.py
 - [ ] one-shot MAPF：EECBS / PIBT
 - [ ] life-long MAPF：RHCR
 - [ ] 任务分配：Google OR-Tools / ALNS / DRLH
-- [ ] ROS 集成：Gazebo + TurtleBot3 Burger
+- [ ] ROS集成：Gazebo + TurtleBot3 Burger
 
 
 ## 许可证
 
-本项目采用 MIT 许可证，详见 [LICENSE](LICENSE)。
+本项目采用MIT许可证，详见 [LICENSE](LICENSE)。
