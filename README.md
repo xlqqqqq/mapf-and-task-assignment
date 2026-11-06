@@ -27,7 +27,7 @@
 
 上述已实现的四种算法均使用RRA（Reverse Resumable A*）作为低层A*的启发式：从目标点反向搜索得到精确距离，减少低层搜索的无效扩展。
 
-**相关论文**
+**相关链接**
 
 - CBS：[PDF](https://cdn.aaai.org/ojs/18222/18222-77-21738-1-2-20210717.pdf)
 - ICBS：[PDF](https://ijcai.org/proceedings/2015/0110.pdf)
@@ -42,7 +42,7 @@
 | --- | --- | --- | --- |
 | RHCR | Rolling-Horizon Collision Resolution | 未更新 | 将life-long MAPF划分为多个时间窗口，在每个窗口内求解one-shot子问题并执行前几步，滚动推进 |
 
-**相关论文**
+**相关链接**
 
 - RHCR：[PDF](https://cdn.aaai.org/ojs/17344/17344-13-20838-1-2-20210518.pdf)
 
@@ -56,6 +56,7 @@
 
 
 **相关链接**
+
 - 任务分配模型参考：[PDF](https://www.cs.sfu.ca/~hangma/pub/aamas17.pdf)
 - OR-Tools：[官方文档](https://developers.google.cn/optimization/routing/pickup_delivery#python)
 - ALNS：[WEB](https://pubsonline.informs.org/doi/epdf/10.1287/trsc.1050.0135)
