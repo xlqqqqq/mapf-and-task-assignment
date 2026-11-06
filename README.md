@@ -90,7 +90,7 @@ pip install pyyaml
 
 ```bash
 git clone https://github.com/xlqqqqq/mapf-and-task-assignment.git
-cd "<仓库名>/path-finding/one-shot/CBS with RRA"
+cd "../path-finding/one-shot/CBS with RRA"
 python src/main.py maps/map_random/random_map.yaml output.yaml stay
 ```
 
